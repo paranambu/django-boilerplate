@@ -69,8 +69,9 @@ INSTALLED_APPS = [
     'channels',
     'floppyforms',
 
-    'users',
+    'main',
     'utils',
+    'users',
 ]
 
 MIDDLEWARE = [
