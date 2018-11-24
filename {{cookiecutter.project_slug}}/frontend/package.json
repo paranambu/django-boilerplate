@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch",
+    "start": "webpack --mode development --watch",
     "build": "NODE_ENV=production webpack --mode production",
     "build-dev": "webpack --mode development",
     "test": "jest --config jest/config-test.json",
@@ -29,6 +29,7 @@
     "i18next-parser": "^0.13.0",
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",
+    "mini-css-extract-plugin": "^0.4.5",
     "node-sass": "^4.9.3",
     "popper.js": "^1.14.4",
     "sass-loader": "^7.1.0",
