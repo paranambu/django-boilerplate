@@ -1,0 +1,48 @@
+{% load static i18n webpack_loader hijack_tags utils %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_settings "LOAD_EXTERNAL_REFS" as LOAD_EXTERNAL_REFS %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}{% endblock %}</title>
+
+  {% comment %}
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static "img/favicon/apple-touch-icon.png" %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static "img/favicon/favicon-32x32.png" %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static "img/favicon/favicon-16x16.png" %}">
+  <meta name="theme-color" content="#ffffff">
+  {% endcomment %}
+
+  {% if LOAD_EXTERNAL_REFS %}
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+  {% else %}
+    {% render_bundle "fonts" "css" %}
+  {% endif %}
+
+  <link href="{% static 'hijack/hijack-styles.css' %}" rel="stylesheet">
+  {% render_bundle "styles" "css" %}
+  {% block extra_css %}{% endblock %}
+</head>
+<body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}">
+  {% hijack_notification %}
+
+  {% block layout %}{% endblock %}
+
+  {% if LOAD_EXTERNAL_REFS %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/esm/popper.min.js" integrity="sha256-pcumEsJdvrEDgRuBX+bjTTxOYaVnm0Dni2NvvapVemY=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  {% else %}
+    <script src="{% static "vendor/jquery/jquery.slim.min.js" %}"></script>
+    <script src="{% static "vendor/popper.js/popper.min.js" %}"></script>
+    <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "vendor/fontawesome/js/all.min.js" %}"></script>
+  {% endif %}
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
