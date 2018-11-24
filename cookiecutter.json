@@ -8,6 +8,7 @@
     "Unlicense"
   ],
   "_copy_without_render": [
-      "*.html"
+      "*.html",
+      "backend/apps/utils/templatetags/tests/test_utils.py"
   ]
 }
